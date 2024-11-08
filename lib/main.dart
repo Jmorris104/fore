@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+// ignore: depend_on_referenced_packages
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_options.dart';
 
@@ -11,13 +12,15 @@ await Firebase.initializeApp(
 options: DefaultFirebaseOptions.currentPlatform,
 );
 
-runApp(MyApp());
+runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
 @override
 Widget build(BuildContext context) {
-return MaterialApp(
+return const MaterialApp(
 title: 'Firebase Auth Demo',
 home: MyHomePage(title: 'Firebase Auth Demo'),
 );
@@ -25,10 +28,11 @@ home: MyHomePage(title: 'Firebase Auth Demo'),
 }
 
 class MyHomePage extends StatefulWidget {
-MyHomePage({Key? key, required this.title}) : super(key: key);
+const MyHomePage({super.key, required this.title});
 final String title;
 
 @override
+// ignore: library_private_types_in_public_api
 _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -37,7 +41,7 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 
 void _signOut() async {
 await _auth.signOut();
-ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
 content: Text('Signed out successfully'),
 ));
 }
@@ -52,7 +56,7 @@ ElevatedButton(
 onPressed: () {
 _signOut();
 },
-child: Text('Sign Out'),
+child: const Text('Sign Out'),
 ),
 ],
 ),
@@ -70,7 +74,8 @@ EmailPasswordForm(auth: _auth),
 }
 
 class RegisterEmailSection extends StatefulWidget {
-RegisterEmailSection({Key? key, required this.auth}) : super(key: key);
+// ignore: use_super_parameters
+const RegisterEmailSection({Key? key, required this.auth}) : super(key: key);
 final FirebaseAuth auth;
 
 @override
@@ -113,7 +118,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
 children: <Widget>[
 TextFormField(
 controller: _emailController,
-decoration: InputDecoration(labelText: 'Email'),
+decoration: const InputDecoration(labelText: 'Email'),
 validator: (value) {
 if (value?.isEmpty??true) {
 return 'Please enter some text';
@@ -123,7 +128,7 @@ return null;
 ),
 TextFormField(
 controller: _passwordController,
-decoration: InputDecoration(labelText: 'Password'),
+decoration: const InputDecoration(labelText: 'Password'),
 validator: (value) {
 if(value?.isEmpty??true) {
 return 'Please enter some text';
@@ -140,7 +145,7 @@ if (_formKey.currentState!.validate()) {
 _register();
 }
 },
-child: Text('Submit'),
+child: const Text('Submit'),
 ),
 ),
 Container(
@@ -161,10 +166,11 @@ style: TextStyle(color: _success ? Colors.green : Colors.red),
 }
 
 class EmailPasswordForm extends StatefulWidget {
-EmailPasswordForm({Key? key, required this.auth}) : super(key: key);
+const EmailPasswordForm({Key? key, required this.auth}) : super(key: key);
 final FirebaseAuth auth;
 
 @override
+// ignore: library_private_types_in_public_api
 _EmailPasswordFormState createState() => _EmailPasswordFormState();
 }
 
@@ -203,13 +209,13 @@ child: Column(
 crossAxisAlignment: CrossAxisAlignment.start,
 children: <Widget>[
 Container(
-child: Text('Test sign in with email and password'),
 padding: const EdgeInsets.all(16),
 alignment: Alignment.center,
+child: const Text('Test sign in with email and password'),
 ),
 TextFormField(
 controller: _emailController,
-decoration: InputDecoration(labelText: 'Email'),
+decoration: const InputDecoration(labelText: 'Email'),
 validator: (value) {
 if (value?.isEmpty??true) {
 return 'Please enter some text';
@@ -219,7 +225,7 @@ return null;
 ),
 TextFormField(
 controller: _passwordController,
-decoration: InputDecoration(labelText: 'Password'),
+decoration: const InputDecoration(labelText: 'Password'),
 validator: (value) {
 if (value?.isEmpty??true) {
 return 'Please enter some text';
@@ -236,7 +242,7 @@ if (_formKey.currentState!.validate()) {
 _signInWithEmailAndPassword();
 }
 },
-child: Text('Submit'),
+child: const Text('Submit'),
 ),
 ),
 Container(
