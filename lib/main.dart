@@ -256,3 +256,4 @@ style: TextStyle(color: _success ? Colors.green : Colors.red),
 );
 }
 }
+//code for email and etc
